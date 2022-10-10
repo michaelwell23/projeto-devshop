@@ -1,0 +1,65 @@
+<%- include('../header.ejs'); %> 
+
+	<!-- Start Banner Area -->
+	<section class="banner-area organic-breadcrumb">
+		<div class="container">
+			<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+				<div class="col-first">
+					<h1>Editar Produto</h1>
+					<nav class="d-flex align-items-center">
+						<a href="/">Home<span class="lnr lnr-arrow-right"></span></a>
+						<a href="/admin">Administrativo</a>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End Banner Area -->
+
+  <!--================Login Box Area =================-->
+	<section class="login_box_area section_gap">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="login_box_img">
+						<img class="img-fluid" src="/img/login.jpg" alt="">
+						<div class="hover">
+							<h4>Editando Categoria</h4>
+							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti et ab ad ex quam doloremque saepe quia dicta dolor repellendus fugit incidunt, libero rerum facere illo illum aliquam, totam placeat?</p>
+							<a class="primary-btn" href="/admin/categorias"">Voltar para o Gerenciamento de Categorias</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="login_form_inner">
+						<h3>Editar Produto</h3>
+						<form class="row login_form" method="post">
+							<div class="col-md-12 form-group">
+								<label>Nome da Produto</label>
+								<input type="text" class="form-control <% if(errors && errors.indexOf('name') >= 0) { %> is-invalid <% } %>" id="name" name="name"  placeholder="Nome da Categoria" onfocus="this.placeholder = ''" onblur="this.placeholder = 'name'" value="<%= form.name %> ">
+
+									<div class="invalid-feedback">
+										É necessário preencher o nome do Produto
+									</div>
+							</div>
+							
+							<div class="col-md-12 form-group">
+								<label>Descrição do produto</label>
+								<textarea class="form-control <% if(errors && errors.indexOf('description') >= 0) { %> is-invalid <% } %>" name="description" id="description" cols="30" rows="10" onfocus= "this.placeholder = ''"onblur= "this.placeholder = 'Descrição'" value=""><%=form.description %></textarea>
+				
+								<div class="invalid-feedback">
+									É necessário preencher a descrição do produto
+								</div>
+							</div>
+
+							<div class="col-md-12 form-group">
+								<button type="submit" value="submit" class="primary-btn">Salvar Produto</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--================End Login Box Area =================-->	
+  <%- include('../../partials/footer'); %> 

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zxx" class="no-js">
+
+<head>
+	<!-- Mobile Specific Meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Favicon-->
+	<link rel="shortcut icon" href="/img/fav.png">
+	<!-- Author Meta -->
+	<meta name="author" content="CodePixar">
+	<!-- Meta Description -->
+	<meta name="description" content="">
+	<!-- Meta Keyword -->
+	<meta name="keywords" content="">
+	<!-- meta character set -->
+	<meta charset="UTF-8">
+	<!-- Site Title -->
+	<title>DevShop</title>
+	<!--
+		CSS
+		============================================= -->
+	<link rel="stylesheet" href="/css/linearicons.css">
+	<link rel="stylesheet" href="/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/css/themify-icons.css">
+	<link rel="stylesheet" href="/css/bootstrap.css">
+	<link rel="stylesheet" href="/css/owl.carousel.css">
+	<link rel="stylesheet" href="/css/nice-select.css">
+	<link rel="stylesheet" href="/css/nouislider.min.css">
+	<link rel="stylesheet" href="/css/ion.rangeSlider.css" />
+	<link rel="stylesheet" href="/css/ion.rangeSlider.skinFlat.css" />
+	<link rel="stylesheet" href="/css/magnific-popup.css">
+	<link rel="stylesheet" href="/css/main.css">
+</head>
+
+<body>
+
+	<!-- Start Header Area -->
+	<header class="header_area sticky-header">
+		<div class="main_menu">
+			<nav class="navbar navbar-expand-lg navbar-light main_box">
+				<div class="container">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<a class="navbar-brand logo_h" href="/"><img src="/img/logo/logo_devshop.png" alt="DevShop"></a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+					 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+						<ul class="nav navbar-nav menu_nav ml-auto">
+							<li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
+							<li class="nav-item submenu dropdown">
+								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+								 aria-expanded="false">Categorias</a>
+								<ul class="dropdown-menu">
+                  <% locals.categories.forEach(category => { %> 
+									  <li class="nav-item"><a class="nav-link" href="/categoria/<%-category.id%>/<%-category.slug %>"><%-category.category%></a></li>
+                  <% }); %>
+								</ul>
+							</li>
+							<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+						<% if(user){ %> 
+							<li class="nav-item submenu dropdown">
+								<a href="#" class="nav-link dropdown-toggle text-success" data-toggle="dropdown" role="button" aria-haspopup="true"
+								 aria-expanded="false" >
+								 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+									<path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+								</svg>
+								 <%-user.name%> </a>
+								<ul class="dropdown-menu">
+									<% if(user.roles.indexOf('customer') >= 0) { %> 
+										<li class="nav-item"><a class="nav-link" href="login.html">Minha Conta</a></li>
+										<li class="nav-item"><a class="nav-link" href="login.html">Meus pedidos</a></li>
+									<% } %> 
+									<% if(user.roles.indexOf('admin') >= 0) { %> 	
+										<li class="nav-item"><a class="nav-link" href="/admin">Administrativo</a></li>
+									<% } %> 
+									<% if(user.roles.indexOf('finance') >= 0) { %> 
+										<li class="nav-item"><a class="nav-link" href="tracking.html">Financeiro</a></li>
+									<% } %> 
+									<li class="nav-item"><a class="nav-link text-danger" href="/logout">Sair</a></li>
+								</ul>
+							</li>	
+							<% }else{ %> 	
+								<li class="nav-item submenu dropdown">
+									<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+									 aria-expanded="false">
+										Login
+									</a>
+									<ul class="dropdown-menu">
+										<div class="dropdown-menu">
+											<form class="px-4 py-3" action="/login" method="post">
+												<div class="form-group">
+													<label for="exampleDropdownFormEmail1">Email </label>
+													<input type="email" name="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com">
+												</div>
+												<div class="form-group">
+													<label for="exampleDropdownFormPassword1">Senha</label>
+													<input type="password"  name="passwd" class="form-control" id="exampleDropdownFormPassword1" placeholder="Password">
+												</div>
+												<div class="form-group">
+													<div class="form-check">
+														<input type="checkbox" class="form-check-input" id="dropdownCheck">
+														<label class="form-check-label" for="dropdownCheck">
+															Lembrar senha
+														</label>
+													</div>
+												</div>
+												<button type="submit" class="btn btn-warning">Login </button>
+											</form>
+											<div class="dropdown-divider"></div>
+											<a class="dropdown-item" href="/login/conta">Não possui uma conta?</a>
+											<a class="dropdown-item" href="/login/redefincao">Esqueceu a senha?</a>
+										</div>
+									</ul>
+								</li> 
+						<% } %> 
+						</ul>
+						<ul class="nav navbar-nav navbar-right">
+							<li class="nav-item"><a href="#" class="cart"><span class="ti-bag"></span></a></li>
+							<li class="nav-item">
+								<button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</div>
+		<div class="search_input" id="search_input_box">
+			<div class="container">
+				<form class="d-flex justify-content-between">
+					<input type="text" class="form-control" id="search_input" placeholder="Search Here">
+					<button type="submit" class="btn"></button>
+					<span class="lnr lnr-cross" id="close_search" title="Close Search"></span>
+				</form>
+			</div>
+		</div>
+	</header>
+	<!-- End Header Area -->

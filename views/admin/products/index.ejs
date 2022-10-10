@@ -1,0 +1,72 @@
+<%- include('../header.ejs'); %> 
+
+<!-- Start Banner Area -->
+<section class="banner-area organic-breadcrumb">
+  <div class="container">
+    <div
+      class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end"
+    >
+  
+      <div class="col-first">
+        <h1>Gerenciar Produtos</h1>
+        <nav class="d-flex align-items-center">
+          <a href="/">Home<span class="lnr lnr-arrow-right"></span></a> 
+          <a href="/admin">Admin<span class="lnr lnr-arrow-right"></span></a>
+          <a href="/admin/produto">Gerenciar produto</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Banner Area -->
+
+ <div class="whole-wrap pb-100">
+		<div class="container">
+			<div class="section-top-border">
+				<h3 class="mb-30"></h3>
+				<div class="progress-table-wrap">
+					<div class="progress-table">
+						<table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Categoria</th>
+                  <th scope="col">Descrição</th>
+                  <th scope="col">Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% products.forEach(product => { %>
+                  <tr>
+                    <td scope="row"><%= product.id %></td>
+                    <td><%= product.name %></td>
+                    <td scope="row"><%= product.description %></td>
+                    <td>
+                      <ul class="social mb-0 list-inline mt-3">
+                        <li class="list-inline-item mr-3">
+                          <a href="/admin/produto/editar/<%= product.id %>" class="social-link">
+                            <i class="lnr lnr-pencil"></i>
+                          </a>
+                        </li>
+                        <li class="list-inline-item mr-3">
+                          <a href="/admin/produto/excluir/<%= product.id %>" class="social-link">
+                            <i class="lnr lnr-trash"r"></i>
+                          </a>
+                        </li>
+                      </ul>
+                    </td>
+                  </tr>
+                <% }); %>
+              </tbody>
+            </table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> 
+	<!-- End Align Area -->
+
+
+  <!-- PAUSADO EM EDITAR EM 4MIN : 18 -->
+
+<%- include('../../partials/footer.ejs'); %> 
